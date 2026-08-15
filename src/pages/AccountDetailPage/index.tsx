@@ -20,7 +20,7 @@ export function AccountDetailPage() {
   const [searchParams] = useSearchParams();
   const { periodId } = useSelectedPeriod();
   const navigate = useNavigate();
-  const movementsZone = useMovements(periodId);
+  const movementsZone = useMovements(periodId ?? '');
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   const fromSummary = searchParams.get('origen') !== 'cuentas';
@@ -62,7 +62,7 @@ export function AccountDetailPage() {
     <div className={styles.page}>
       <Link
         className={styles.back}
-        to={fromSummary ? `/resumen?periodo=${periodId}` : '/cuentas'}
+        to={fromSummary ? `/resumen${periodId ? `?periodo=${periodId}` : ''}` : '/cuentas'}
       >
         <ChevronLeftIcon size={16} />
         {fromSummary ? 'Volver al resumen' : 'Volver a Cuentas'}
@@ -79,7 +79,7 @@ export function AccountDetailPage() {
           <div className={styles.badges}>
             <PlainBadge>{ACCOUNT_TYPE_LABEL[account.type]}</PlainBadge>
             {account.active ? null : <PlainBadge tone="muted">Inactiva</PlainBadge>}
-            {fromSummary ? <PlainBadge tone="muted">{formatPeriodLabel(periodId)}</PlainBadge> : null}
+            {fromSummary ? <PlainBadge tone="muted">{formatPeriodLabel(periodId ?? '')}</PlainBadge> : null}
           </div>
         </div>
         <Button
@@ -127,7 +127,7 @@ export function AccountDetailPage() {
             items={movements}
             onEdit={() => {
               // Movement editing lives in the period detail, next to its context.
-              void navigate(`/mes?periodo=${periodId}`);
+              void navigate(periodId ? `/mes?periodo=${periodId}` : '/mes');
             }}
             emptyState={
               <EmptyState
@@ -135,7 +135,7 @@ export function AccountDetailPage() {
                 title="Sin movimientos en este periodo para esta cuenta"
                 description="Cuando registres algo con esta cuenta aparecerá aquí."
                 action={
-                  <Link className={styles.back} to={`/mes?periodo=${periodId}`}>
+                  <Link className={styles.back} to={periodId ? `/mes?periodo=${periodId}` : '/mes'}>
                     Ir al detalle del periodo
                   </Link>
                 }

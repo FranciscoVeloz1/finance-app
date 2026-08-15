@@ -161,6 +161,26 @@ describe('propagation', () => {
       if (url.includes('/finance/accounts')) {
         return jsonResponse({ periodId: MARCH, accounts: [debitAccount] });
       }
+      if (url.includes('/finance/periods')) {
+        const compact = {
+          expectedIncome: '10000.00',
+          receivedIncome: '10000.00',
+          expectedExpense: '19400.00',
+          actualExpense: '10850.00',
+          expectedSavings: '29650.00',
+          actualSavings: '39650.00',
+          cashRemaining: '750.00',
+          creditAvailable: '46500.00',
+          projectedCreditAvailable: '46500.00',
+        };
+        return jsonResponse({
+          periods: [
+            { id: MARCH, year: 2026, month: 3, label: 'Marzo 2026', classification: 'CURRENT', version: 1, summary: compact },
+            { id: APRIL, year: 2026, month: 4, label: 'Abril 2026', classification: 'FUTURE', version: 1, summary: compact },
+            { id: MAY, year: 2026, month: 5, label: 'Mayo 2026', classification: 'FUTURE', version: 1, summary: compact },
+          ],
+        });
+      }
       return jsonResponse({ error: 'NOT_FOUND', message: 'no' }, 404);
     });
     vi.stubGlobal('fetch', fetchMock);

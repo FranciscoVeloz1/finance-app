@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { classifyPeriod, formatPeriodLabel, shiftPeriod } from './dates';
+import { classifyPeriod, formatPeriodLabel, pickDefaultPeriod, shiftPeriod } from './dates';
 
 describe('formatPeriodLabel', () => {
   it('does not drift a month across time zones', () => {
@@ -21,5 +21,23 @@ describe('classifyPeriod', () => {
     expect(classifyPeriod('2026-07', '2026-08')).toBe('past');
     expect(classifyPeriod('2026-08', '2026-08')).toBe('current');
     expect(classifyPeriod('2026-09', '2026-08')).toBe('future');
+  });
+});
+
+describe('pickDefaultPeriod', () => {
+  const january = { id: 'jan', year: 2026, month: 1 };
+  const march = { id: 'mar', year: 2026, month: 3 };
+  const august = { id: 'aug', year: 2026, month: 8 };
+
+  it('returns undefined for an empty list', () => {
+    expect(pickDefaultPeriod([])).toBeUndefined();
+  });
+
+  it('prefers the calendar month when it exists', () => {
+    expect(pickDefaultPeriod([january, march, august], new Date('2026-08-14T12:00:00'))).toBe('aug');
+  });
+
+  it('falls back to the latest period', () => {
+    expect(pickDefaultPeriod([january, march], new Date('2026-08-14T12:00:00'))).toBe('mar');
   });
 });

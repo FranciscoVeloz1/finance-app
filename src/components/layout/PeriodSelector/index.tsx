@@ -13,7 +13,7 @@ interface PeriodSelectorProps {
 
 export function PeriodSelector({ missing = false, onCreatePeriod }: PeriodSelectorProps) {
   const { periodId, setPeriod } = useSelectedPeriod();
-  const periodsQuery = useFinancePeriods({ fromYear: 2026, fromMonth: 1, toYear: 2026, toMonth: 5 });
+  const periodsQuery = useFinancePeriods();
   const options = periodsQuery.data?.periods ?? [];
   const index = options.findIndex((period) => period.id === periodId);
   const current = index >= 0 ? options[index] : undefined;
@@ -40,7 +40,7 @@ export function PeriodSelector({ missing = false, onCreatePeriod }: PeriodSelect
           <select
             className={styles.select}
             aria-label="Periodo"
-            value={current?.id ?? periodId}
+            value={current?.id ?? ''}
             onChange={(event) => {
               setPeriod(event.currentTarget.value);
             }}

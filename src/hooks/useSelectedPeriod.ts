@@ -1,13 +1,14 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { MARCH_PERIOD_ID, UUID_V4_CANONICAL_PATTERN } from '../api/finance-types';
-import { classifyPeriod, currentPeriodId } from '../utils/dates';
+import { UUID_V4_CANONICAL_PATTERN } from '../api/finance-types';
+import { classifyPeriod, currentPeriodId, pickDefaultPeriod } from '../utils/dates';
+import { useFinancePeriods } from './useFinancePeriods';
 import type { PeriodId, TemporalClass } from '../types/finance';
 
 const PERIOD_PARAM = 'periodo';
 
 interface SelectedPeriod {
-  periodId: PeriodId;
+  periodId: string | undefined;
   temporal: TemporalClass;
   setPeriod: (periodId: PeriodId) => void;
   step: (months: number) => void;
@@ -15,9 +16,16 @@ interface SelectedPeriod {
 
 export function useSelectedPeriod(): SelectedPeriod {
   const [searchParams, setSearchParams] = useSearchParams();
+  const periodsQuery = useFinancePeriods();
+  const periods = periodsQuery.data?.periods ?? [];
   const candidate = searchParams.get(PERIOD_PARAM);
-  const periodId =
-    candidate !== null && UUID_V4_CANONICAL_PATTERN.test(candidate) ? candidate : MARCH_PERIOD_ID;
+  const fromUrl =
+    candidate !== null && UUID_V4_CANONICAL_PATTERN.test(candidate) ? candidate : undefined;
+  const periodId = periodsQuery.isSuccess
+    ? fromUrl !== undefined && periods.some((period) => period.id === fromUrl)
+      ? fromUrl
+      : pickDefaultPeriod(periods)
+    : undefined;
 
   const setPeriod = useCallback(
     (next: PeriodId) => {

@@ -21,19 +21,15 @@ function zoneFromQuery(isPending: boolean, isError: boolean, isEmpty: boolean): 
 
 export function useDashboardData() {
   const { periodId, setPeriod } = useSelectedPeriod();
-  const periodsQuery = useFinancePeriods({ fromYear: 2026, fromMonth: 1, toYear: 2026, toMonth: 5 });
+  const periodsQuery = useFinancePeriods();
   const periods = periodsQuery.data?.periods ?? [];
-  const selected =
-    periods.some((period) => period.id === periodId) || periods.length === 0
-      ? periodId
-      : (periods.find((period) => period.year === 2026 && period.month === 3)?.id ?? periods[0]?.id);
 
-  const summaryQuery = useFinanceSummary(periods.length > 0 ? selected : undefined);
+  const summaryQuery = useFinanceSummary(periodId);
   const accountsQuery = useFinanceAccounts(
-    selected ? { periodId: selected, includeBalances: true } : undefined,
-    Boolean(selected) && periods.length > 0,
+    periodId ? { periodId, includeBalances: true } : undefined,
+    Boolean(periodId),
   );
-  const transactionsQuery = useFinanceTransactions(selected, { limit: 20 });
+  const transactionsQuery = useFinanceTransactions(periodId, { limit: 20 });
 
   const summary =
     summaryQuery.data && accountsQuery.data
@@ -45,9 +41,11 @@ export function useDashboardData() {
       : null;
 
   const timeline = mapTimeline(periods);
+  const detailPending =
+    Boolean(periodId) && (summaryQuery.isPending || accountsQuery.isPending || transactionsQuery.isPending);
 
   return {
-    periodId: selected ?? periodId,
+    periodId,
     setPeriod,
     periodVersion: summaryQuery.data?.period.version,
     year: summaryQuery.data?.period.year,
@@ -56,9 +54,9 @@ export function useDashboardData() {
     timeline,
     summaryZone: {
       status: zoneFromQuery(
-        summaryQuery.isPending,
+        periodsQuery.isPending || detailPending,
         summaryQuery.isError,
-        !summaryQuery.isPending && summary === null && periods.length === 0,
+        periodsQuery.isSuccess && periodId === undefined,
       ),
       data: summary,
       retry: () => {
@@ -69,7 +67,7 @@ export function useDashboardData() {
       status: zoneFromQuery(
         periodsQuery.isPending,
         periodsQuery.isError,
-        !periodsQuery.isPending && periods.length === 0,
+        periodsQuery.isSuccess && periods.length === 0,
       ),
       data: timeline,
       retry: () => {

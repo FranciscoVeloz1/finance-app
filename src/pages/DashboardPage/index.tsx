@@ -64,14 +64,14 @@ export function DashboardPage() {
 
       {/* Focal first in reading order at every breakpoint. */}
       <SavingsHero
-        periodId={periodId}
+        periodId={periodId ?? ''}
         periodLabel={periodLabel}
         expected={summary?.expectedSavings ?? 0}
         real={summary?.realSavings ?? 0}
         status={summaryZone.status}
         onRetry={summaryZone.retry}
         onConfigure={() => {
-          navigate(`/mes?periodo=${periodId}`);
+          navigate(periodId ? `/mes?periodo=${periodId}` : '/mes');
         }}
       />
 
@@ -267,7 +267,7 @@ export function DashboardPage() {
                     <CategoryBudgetRow
                       key={category.id}
                       category={category}
-                      periodId={periodId}
+                      periodId={periodId ?? ''}
                     />
                   );
                 })}
@@ -280,7 +280,7 @@ export function DashboardPage() {
           <PeriodTimeline
             entries={timelineZone.data ?? []}
             status={timelineZone.status}
-            selectedPeriod={periodId}
+            selectedPeriod={periodId ?? ''}
             onSelect={setPeriod}
             onCreatePeriod={() => {
               notify('info', 'La creación de periodos se habilita con la capa de datos.');
@@ -295,7 +295,7 @@ export function DashboardPage() {
           suggestions={summary.suggestions}
           onReview={(suggestion) => {
             notify('info', `Revisa "${suggestion.title}" en el detalle del mes.`);
-            navigate(`/mes?periodo=${periodId}`);
+            navigate(periodId ? `/mes?periodo=${periodId}` : '/mes');
           }}
         />
       )}
@@ -323,7 +323,7 @@ export function DashboardPage() {
               })
               .map((account) => {
                 return (
-                  <AccountSummaryCard key={account.id} account={account} periodId={periodId} />
+                  <AccountSummaryCard key={account.id} account={account} periodId={periodId ?? ''} />
                 );
               })}
           </ul>

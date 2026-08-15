@@ -69,7 +69,7 @@ export function MonthDetailPage() {
   const [searchParams] = useSearchParams();
   const summaryQuery = useFinanceSummary(periodId);
   const accountsQuery = useFinanceAccounts(
-    { periodId, includeBalances: true },
+    periodId ? { periodId, includeBalances: true } : undefined,
     Boolean(periodId),
   );
   const transactionsQuery = useFinanceTransactions(periodId, { limit: 100 });
@@ -164,12 +164,12 @@ export function MonthDetailPage() {
     setEditorOpen(true);
   };
 
-  const loading = summaryZone.status === 'loading';
+  const loading = Boolean(periodId) && summaryQuery.isPending;
 
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <Link className={styles.back} to={`/resumen?periodo=${periodId}`}>
+        <Link className={styles.back} to={periodId ? `/resumen?periodo=${periodId}` : '/resumen'}>
           <ChevronLeftIcon size={16} />
           Volver al resumen
         </Link>
@@ -548,7 +548,7 @@ export function MonthDetailPage() {
 
       <PropagationImpactDialog
         open={impactOpen}
-        originPeriod={periodId}
+        originPeriod={periodId ?? ''}
         originLabel={periodLabel}
         confirming={confirm.isPending}
         deltas={
@@ -568,7 +568,7 @@ export function MonthDetailPage() {
           setPendingChange(null);
         }}
         onConfirm={() => {
-          if (pendingChange === null || summaryQuery.data === undefined) {
+          if (pendingChange === null || summaryQuery.data === undefined || periodId === undefined) {
             return;
           }
           void confirm

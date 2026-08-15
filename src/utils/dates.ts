@@ -81,3 +81,29 @@ export function comparePeriods(a: PeriodId, b: PeriodId): number {
 
   return a < b ? -1 : 1;
 }
+
+export function pickDefaultPeriod<T extends { id: string; year: number; month: number }>(
+  periods: T[],
+  now: Date = new Date(),
+): string | undefined {
+  if (periods.length === 0) {
+    return undefined;
+  }
+
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const current = periods.find((period) => period.year === year && period.month === month);
+  if (current !== undefined) {
+    return current.id;
+  }
+
+  let latest = periods[0];
+  for (let index = 1; index < periods.length; index += 1) {
+    const period = periods[index];
+    if (period.year > latest.year || (period.year === latest.year && period.month > latest.month)) {
+      latest = period;
+    }
+  }
+
+  return latest.id;
+}

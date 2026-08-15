@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { App } from './App';
 import { queryClient } from './api/query-client';
 import { writeRefreshToken } from './auth/session-storage';
@@ -77,6 +77,12 @@ describe('App routes', () => {
 
     expect(await screen.findByRole('link', { name: /saltar al contenido/i })).toBeInTheDocument();
     expect(await screen.findByRole('navigation', { name: /principal/i })).toBeInTheDocument();
+    await waitFor(() => {
+      const urls = vi.mocked(fetch).mock.calls.map((call) => String(call[0]));
+      expect(urls.some((url) => url.includes('/finance/periods'))).toBe(true);
+    });
+    const urls = vi.mocked(fetch).mock.calls.map((call) => String(call[0]));
+    expect(urls.some((url) => url.includes('4bc02a91-6ad8-4627-8ab9-01c3ee0a1003'))).toBe(false);
   });
 
   it.each([

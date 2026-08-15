@@ -115,7 +115,7 @@ export function AccountsPage() {
         </span>
 
         <div className={styles.text}>
-          <Link className={styles.label} to={`/cuentas/${account.id}?periodo=${periodId}`}>
+          <Link className={styles.label} to={`/cuentas/${account.id}?periodo=${periodId ?? ''}`}>
             {account.label}
           </Link>
           <span className={styles.type}>
