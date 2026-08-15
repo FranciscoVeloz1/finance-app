@@ -1,0 +1,70 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.current {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.select {
+  min-height: var(--hit-area-min);
+  max-width: 100%;
+  padding: 0 var(--space-sm);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: var(--text-primary);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.select:hover {
+  background-color: var(--surface-sunken);
+}
+
+/* Inline, non-blocking: navigating to a month that does not exist yet still
+   shows the shell instead of a blank screen. */
+.missing {
+  position: absolute;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-raised);
+  box-shadow: var(--elevation-raised);
+  color: var(--text-secondary);
+  font-size: var(--text-caption);
+  white-space: nowrap;
+}
+
+@media (width < 768px) {
+  .select {
+    font-size: var(--text-body);
+  }
+
+  .missing {
+    right: 0;
+    left: 0;
+    justify-content: center;
+    white-space: normal;
+  }
+}

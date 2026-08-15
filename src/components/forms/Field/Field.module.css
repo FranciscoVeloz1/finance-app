@@ -1,0 +1,33 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.label {
+  color: var(--text-primary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  line-height: var(--leading-label);
+}
+
+.required {
+  margin-left: 2px;
+  color: var(--semantic-negative);
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: var(--text-caption);
+  line-height: var(--leading-label);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--semantic-negative);
+  font-size: var(--text-caption);
+  line-height: var(--leading-label);
+}

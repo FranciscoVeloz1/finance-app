@@ -1,0 +1,79 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-raised);
+}
+
+.title {
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  line-height: var(--leading-label);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.columnLabel {
+  color: var(--text-muted);
+  font-size: var(--text-caption);
+  line-height: var(--leading-label);
+}
+
+.columnValue {
+  margin: 0;
+}
+
+.difference {
+  padding-left: var(--space-sm);
+  border-left: 1px solid var(--border-subtle);
+}
+
+.favourable {
+  color: var(--semantic-positive);
+}
+
+.unfavourable {
+  color: var(--semantic-negative);
+}
+
+.muted {
+  color: var(--text-secondary);
+  font-size: var(--text-caption);
+}
+
+/* Narrow viewports stack the trio but keep the labels and tabular alignment. */
+@media (width < 480px) {
+  .columns {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+
+  .column {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .difference {
+    padding-top: var(--space-xs);
+    padding-left: 0;
+    border-top: 1px solid var(--border-subtle);
+    border-left: none;
+  }
+}

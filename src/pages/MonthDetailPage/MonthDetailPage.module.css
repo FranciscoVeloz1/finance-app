@@ -1,0 +1,110 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  align-self: flex-start;
+  min-height: var(--hit-area-min);
+  padding-right: var(--space-sm);
+  color: var(--accent-secondary);
+  font-size: var(--text-label);
+  text-decoration: none;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: var(--text-h1);
+  font-weight: 600;
+  line-height: var(--leading-h1);
+  letter-spacing: -0.015em;
+}
+
+.focusHint {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.compactSummary {
+  padding: var(--space-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-raised);
+}
+
+/* Sticky secondary nav keeps orientation on a long page. */
+.sectionNav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 20;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--surface-base);
+}
+
+.sectionNavList {
+  display: flex;
+  gap: var(--space-xs);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.sectionLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit-area-min);
+  padding: 0 var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sectionLink:hover {
+  background-color: var(--surface-sunken);
+  color: var(--text-primary);
+}
+
+.sectionLinkActive {
+  background-color: color-mix(in srgb, var(--accent-primary) 10%, white);
+  color: var(--accent-primary);
+}
+
+.section {
+  scroll-margin-top: calc(var(--header-height) + 56px);
+}
+
+.progress {
+  margin-top: var(--space-sm);
+}
+
+.creditCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.subheading {
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  font-weight: 500;
+}
+

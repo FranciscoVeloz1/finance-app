@@ -1,0 +1,87 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  align-self: flex-start;
+  min-height: var(--hit-area-min);
+  padding-right: var(--space-sm);
+  color: var(--accent-secondary);
+  font-size: var(--text-label);
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-sunken);
+  color: var(--text-secondary);
+}
+
+.icon[data-type='credit'] {
+  background-color: var(--world-credit-soft);
+  color: var(--world-credit-strong);
+}
+
+.icon[data-type='cash'] {
+  background-color: var(--world-cash-soft);
+  color: var(--world-cash-strong);
+}
+
+.icon[data-type='savings-fund'] {
+  background-color: var(--world-savings-soft);
+  color: var(--world-savings-strong);
+}
+
+.title {
+  font-size: var(--text-h1);
+  font-weight: 600;
+  line-height: var(--leading-h1);
+  letter-spacing: -0.015em;
+}
+
+.badges {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-top: var(--space-2xs);
+}
+
+.edit {
+  margin-left: auto;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-size: var(--text-h2);
+  font-weight: 600;
+}
+
+.sectionTotal {
+  font-weight: 500;
+}

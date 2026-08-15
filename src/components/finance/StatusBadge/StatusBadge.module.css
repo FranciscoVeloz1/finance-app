@@ -1,0 +1,94 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.planned {
+  background-color: color-mix(in srgb, var(--semantic-planned) 12%, white);
+  border-color: color-mix(in srgb, var(--semantic-planned) 30%, white);
+  color: var(--semantic-planned);
+}
+
+.realized {
+  background-color: color-mix(in srgb, var(--semantic-realized) 10%, white);
+  border-color: color-mix(in srgb, var(--semantic-realized) 26%, white);
+  color: var(--semantic-realized);
+}
+
+.cancelled {
+  background-color: color-mix(in srgb, var(--semantic-cancelled) 12%, white);
+  border-color: color-mix(in srgb, var(--semantic-cancelled) 30%, white);
+  color: var(--semantic-cancelled);
+  text-decoration: line-through;
+}
+
+.transfer {
+  background-color: color-mix(in srgb, var(--semantic-transfer) 10%, white);
+  border-color: color-mix(in srgb, var(--semantic-transfer) 28%, white);
+  color: var(--semantic-transfer);
+}
+
+.past,
+.future {
+  background-color: var(--surface-sunken);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+/* The current period is the only temporal badge that gets emphasis. */
+.current {
+  background-color: color-mix(in srgb, var(--accent-primary) 12%, white);
+  border-color: color-mix(in srgb, var(--accent-primary) 34%, white);
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.sufficient {
+  background-color: color-mix(in srgb, var(--semantic-positive) 10%, white);
+  border-color: color-mix(in srgb, var(--semantic-positive) 28%, white);
+  color: var(--semantic-positive);
+}
+
+.insufficient {
+  background-color: color-mix(in srgb, var(--semantic-negative) 10%, white);
+  border-color: color-mix(in srgb, var(--semantic-negative) 28%, white);
+  color: var(--semantic-negative);
+}
+
+.surplus {
+  background-color: color-mix(in srgb, var(--semantic-warning) 10%, white);
+  border-color: color-mix(in srgb, var(--semantic-warning) 28%, white);
+  color: var(--semantic-warning);
+}
+
+.neutral {
+  background-color: var(--surface-sunken);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.muted {
+  background-color: transparent;
+  border-color: var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.custom {
+  background-color: color-mix(in srgb, var(--accent-secondary) 10%, white);
+  border-color: color-mix(in srgb, var(--accent-secondary) 28%, white);
+  color: var(--accent-secondary);
+}
+
+.override {
+  background-color: color-mix(in srgb, var(--semantic-warning) 10%, white);
+  border-color: color-mix(in srgb, var(--semantic-warning) 30%, white);
+  color: var(--semantic-warning);
+}

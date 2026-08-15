@@ -1,0 +1,70 @@
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid;
+  border-radius: var(--radius-md);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: var(--leading-label);
+}
+
+.description {
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+}
+
+.action {
+  flex-shrink: 0;
+}
+
+.info {
+  background-color: color-mix(in srgb, var(--semantic-info) 7%, white);
+  border-color: color-mix(in srgb, var(--semantic-info) 24%, white);
+  color: var(--semantic-info);
+}
+
+.success {
+  background-color: color-mix(in srgb, var(--semantic-positive) 8%, white);
+  border-color: color-mix(in srgb, var(--semantic-positive) 26%, white);
+  color: var(--semantic-positive);
+}
+
+.warning {
+  background-color: color-mix(in srgb, var(--semantic-warning) 8%, white);
+  border-color: color-mix(in srgb, var(--semantic-warning) 26%, white);
+  color: var(--semantic-warning);
+}
+
+.negative {
+  background-color: color-mix(in srgb, var(--semantic-negative) 8%, white);
+  border-color: color-mix(in srgb, var(--semantic-negative) 26%, white);
+  color: var(--semantic-negative);
+}
+
+@media (width < 640px) {
+  .banner {
+    flex-wrap: wrap;
+  }
+
+  .action {
+    width: 100%;
+  }
+}

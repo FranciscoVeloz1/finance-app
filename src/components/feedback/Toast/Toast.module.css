@@ -1,0 +1,70 @@
+.viewport {
+  position: fixed;
+  right: var(--space-md);
+  bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: min(360px, calc(100vw - var(--space-xl)));
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-md);
+  border: 1px solid var(--border-subtle);
+  border-left-width: 3px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-raised);
+  box-shadow: var(--elevation-overlay);
+  pointer-events: auto;
+  animation: toast-in var(--duration-base) var(--easing-standard);
+}
+
+.message {
+  flex: 1;
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+}
+
+.info {
+  border-left-color: var(--semantic-info);
+}
+
+.success {
+  border-left-color: var(--semantic-positive);
+}
+
+.warning {
+  border-left-color: var(--semantic-warning);
+}
+
+.negative {
+  border-left-color: var(--semantic-negative);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* No slide when the user asked for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}
+
+@media (width < 768px) {
+  .viewport {
+    right: var(--space-sm);
+    left: var(--space-sm);
+    bottom: calc(var(--bottom-nav-height) + var(--space-sm) + env(safe-area-inset-bottom));
+    width: auto;
+  }
+}

@@ -1,0 +1,130 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-raised);
+}
+
+.title {
+  font-size: var(--text-h2);
+  font-weight: 500;
+  line-height: var(--leading-h2);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-right: var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 56px;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  background-color: var(--surface-raised);
+}
+
+.currentRow {
+  border-left: 3px solid var(--accent-primary);
+  background-color: var(--surface-raised);
+}
+
+.selectedRow {
+  background-color: color-mix(in srgb, var(--accent-primary) 7%, white);
+}
+
+.rowButton {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  min-height: 48px;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rowHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.period {
+  font-size: var(--text-label);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.warning {
+  display: inline-flex;
+  color: var(--semantic-warning);
+}
+
+.rowMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.metaLabel {
+  color: var(--text-muted);
+  font-size: var(--text-caption);
+}
+
+.detail {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit-area-min);
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--accent-secondary);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.detail:hover {
+  background-color: var(--surface-sunken);
+}
+
+.create {
+  align-self: flex-start;
+}
+
+@media (width < 480px) {
+  .rowButton {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .rowMeta {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+}

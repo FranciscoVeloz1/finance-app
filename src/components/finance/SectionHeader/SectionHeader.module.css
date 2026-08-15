@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-sm);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--text-h2);
+  font-weight: 500;
+  line-height: var(--leading-h2);
+}
+
+.totals {
+  display: flex;
+  gap: var(--space-lg);
+  margin: 0;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.total dt {
+  color: var(--text-muted);
+  font-size: var(--text-caption);
+  line-height: var(--leading-label);
+}
+
+.total dd {
+  margin: 0;
+}
+
+@media (width < 480px) {
+  .totals {
+    gap: var(--space-md);
+  }
+}

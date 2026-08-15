@@ -1,0 +1,10 @@
+{
+  "january": {
+    "periodId": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1001",
+    "expectedSavings": "29000.00"
+  },
+  "february": {
+    "periodId": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1002",
+    "expectedSavings": "37000.00"
+  }
+}

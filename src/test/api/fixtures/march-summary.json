@@ -1,0 +1,233 @@
+{
+  "period": {
+    "id": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1003",
+    "year": 2026,
+    "month": 3,
+    "version": 1
+  },
+  "summary": {
+    "totals": {
+      "expectedIncome": "10000.00",
+      "receivedIncome": "10000.00",
+      "expectedExpense": "19400.00",
+      "actualExpense": "10850.00",
+      "expectedSavings": "29650.00",
+      "actualSavings": "39650.00",
+      "expectedConsumption": "-9400.00",
+      "cashRemaining": "750.00",
+      "creditUsed": "3500.00",
+      "creditAvailable": "46500.00",
+      "projectedCreditAvailable": "46500.00",
+      "klarBalance": "12000.00"
+    },
+    "accounts": [
+      {
+        "accountId": "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1001",
+        "openingBalance": "36000.00",
+        "closingBalance": "38900.00",
+        "entries": "10000.00",
+        "exits": "7100.00"
+      },
+      {
+        "accountId": "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1002",
+        "openingBalance": "1000.00",
+        "closingBalance": "750.00",
+        "entries": "6250.00",
+        "exits": "6500.00"
+      },
+      {
+        "accountId": "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1003",
+        "openingBalance": "0.00",
+        "closingBalance": "0.00",
+        "entries": "0.00",
+        "exits": "0.00",
+        "debt": "3500.00",
+        "creditAvailable": "46500.00",
+        "creditLimit": "50000.00"
+      },
+      {
+        "accountId": "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1004",
+        "openingBalance": "12000.00",
+        "closingBalance": "12000.00",
+        "entries": "0.00",
+        "exits": "0.00"
+      }
+    ],
+    "categories": [
+      {
+        "categoryGroup": "MONTHLY_SERVICES",
+        "limit": "10350.00",
+        "expected": "10000.00",
+        "actual": "350.00",
+        "remainingActual": "10000.00",
+        "remainingProjected": "0.00"
+      },
+      {
+        "categoryGroup": "GROCERIES",
+        "limit": "6000.00",
+        "expected": "6000.00",
+        "actual": "6000.00",
+        "remainingActual": "0.00",
+        "remainingProjected": "0.00"
+      },
+      {
+        "categoryGroup": "OUTINGS",
+        "limit": "2000.00",
+        "expected": "2000.00",
+        "actual": "500.00",
+        "remainingActual": "1500.00",
+        "remainingProjected": "0.00"
+      },
+      {
+        "categoryGroup": "EXTRAS",
+        "limit": "1400.00",
+        "expected": "1400.00",
+        "actual": "500.00",
+        "remainingActual": "900.00",
+        "remainingProjected": "0.00"
+      }
+    ],
+    "cashWithdrawal": {
+      "withdrawnAmount": "6250.00",
+      "mandadoOutingsActualFromCash": "6500.00",
+      "status": "INSUFFICIENT"
+    },
+    "breakdowns": {
+      "expectedIncomePlanItems": ["d0bf673e-d70c-4a8d-9ed2-7418f2073003"],
+      "receivedIncomeTransactions": ["e8c54f93-3b6d-4c28-8e8b-4fcd709e4005"],
+      "expectedExpensePlanItems": ["d0bf673e-d70c-4a8d-9ed2-7418f2073004"],
+      "actualExpenseTransactions": [
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4006",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4007",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4008",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4009",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4010",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4011",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4012"
+      ],
+      "budgetIds": [
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65001",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65002",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65003",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65004"
+      ],
+      "budgetRemainingActualByCategory": [
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65001",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65002",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65003",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65004"
+      ],
+      "budgetRemainingProjectedByCategory": [
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65001",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65002",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65003",
+        "7ac0a3f5-3c1e-4d93-8d1f-7c5d18a65004"
+      ],
+      "accountOpeningBalanceAccountIds": [
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1001",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1002",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1003",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1004"
+      ],
+      "accountEntryTransactions": [
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4005",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4013"
+      ],
+      "accountExitTransactions": [
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4006",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4007",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4008",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4009",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4010",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4011",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4013"
+      ],
+      "accountClosingBalanceAccountIds": [
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1001",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1002",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1003",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1004"
+      ],
+      "creditPurchaseTransactions": ["e8c54f93-3b6d-4c28-8e8b-4fcd709e4012"],
+      "creditPaymentTransactions": [],
+      "cashWithdrawalTransactions": ["e8c54f93-3b6d-4c28-8e8b-4fcd709e4013"],
+      "cashExpenseTransactions": [
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4007",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4008",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4009",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4010"
+      ],
+      "klarBalanceAccountIds": ["7f5c8b0d-771c-4d4c-8cbd-7e7f318f1004"],
+      "klarDepositTransactions": [],
+      "klarWithdrawalTransactions": [],
+      "expectedSavingsAccountIds": [
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1001",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1002"
+      ],
+      "actualSavingsAccountIds": [
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1001",
+        "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1002"
+      ],
+      "plannedPlanItems": ["d0bf673e-d70c-4a8d-9ed2-7418f2073004"],
+      "realizedPlanItems": ["d0bf673e-d70c-4a8d-9ed2-7418f2073003"],
+      "realizedTransactions": [
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4005",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4006",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4007",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4008",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4009",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4010",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4011",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4012",
+        "e8c54f93-3b6d-4c28-8e8b-4fcd709e4013"
+      ]
+    }
+  },
+  "suggestions": [
+    {
+      "code": "CASH_WITHDRAWAL_INSUFFICIENT",
+      "message": "El retiro de $6,250.00 no cubre $6,500.00 de Mandado y Salidas pagados en Efectivo; faltan $250.00.",
+      "source": {
+        "periodId": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1003",
+        "categoryGroup": "GROCERIES",
+        "accountId": "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1002"
+      },
+      "severity": "WARNING"
+    },
+    {
+      "code": "CATEGORY_NEAR_LIMIT",
+      "message": "Mandado alcanzó $6,000.00 de su límite de $6,000.00.",
+      "source": {
+        "periodId": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1003",
+        "categoryGroup": "GROCERIES"
+      },
+      "severity": "WARNING"
+    },
+    {
+      "code": "PROJECTED_SAVINGS_DROP",
+      "message": "El ahorro esperado de Marzo ($29,650.00) bajó $7,350.00 frente a Febrero.",
+      "source": {
+        "periodId": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1003"
+      },
+      "severity": "WARNING"
+    },
+    {
+      "code": "CREDIT_PAYMENT_CASH_PRESSURE",
+      "message": "El pago de tarjeta de Abril y los compromisos ya planeados dejan $1,650.00 de efectivo esperado.",
+      "source": {
+        "periodId": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1004",
+        "accountId": "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1001"
+      },
+      "severity": "WARNING"
+    },
+    {
+      "code": "UNALLOCATED_CASH",
+      "message": "Marzo proyecta $29,650.00 de efectivo líquido sin depósito a Klar planificado.",
+      "source": {
+        "periodId": "4bc02a91-6ad8-4627-8ab9-01c3ee0a1003",
+        "accountId": "7f5c8b0d-771c-4d4c-8cbd-7e7f318f1001"
+      },
+      "severity": "INFO"
+    }
+  ]
+}

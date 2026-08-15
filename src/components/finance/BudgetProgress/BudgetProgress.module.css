@@ -1,0 +1,89 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.track {
+  position: relative;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.fill,
+.projected {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: var(--radius-pill);
+  transition: width var(--duration-base) var(--easing-standard);
+}
+
+.fill {
+  background-color: var(--semantic-positive);
+}
+
+/* The projected scenario sits behind the real fill as a hatched hint. */
+.projected {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--semantic-positive) 35%, white) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+.warning .fill {
+  background-color: var(--semantic-warning);
+}
+
+.over .fill {
+  background-color: var(--semantic-negative);
+}
+
+.warningProjected {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--semantic-warning) 40%, white) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+.overProjected {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--semantic-negative) 40%, white) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  color: var(--text-secondary);
+  font-size: var(--text-caption);
+  line-height: var(--leading-label);
+}
+
+.normalText {
+  color: var(--text-secondary);
+}
+
+.warningText {
+  color: var(--semantic-warning);
+  font-weight: 500;
+}
+
+.overText {
+  color: var(--semantic-negative);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill,
+  .projected {
+    transition: none;
+  }
+}

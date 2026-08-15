@@ -1,0 +1,172 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: var(--surface-base);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  height: var(--header-height);
+  padding: 0 var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--surface-raised);
+}
+
+.brand {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.expired {
+  display: block;
+  padding: var(--space-sm) var(--space-lg);
+  border-bottom: 1px solid color-mix(in srgb, var(--semantic-warning) 26%, white);
+  background-color: color-mix(in srgb, var(--semantic-warning) 8%, white);
+  color: var(--semantic-warning);
+  font-size: var(--text-label);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+  width: var(--sidebar-width);
+  padding: var(--space-lg) var(--space-sm);
+  border-right: 1px solid var(--border-subtle);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--hit-area-min);
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navItem:hover {
+  background-color: var(--surface-sunken);
+  color: var(--text-primary);
+}
+
+.navItemActive {
+  background-color: color-mix(in srgb, var(--accent-primary) 10%, white);
+  color: var(--accent-primary);
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  overflow-x: hidden;
+}
+
+.content:focus {
+  outline: none;
+}
+
+.bottomNav {
+  display: none;
+}
+
+/* Tablet: sidebar collapses to an icon rail; the period selector stays in the header. */
+@media (width >= 768px) and (width <= 1023px) {
+  .sidebar {
+    width: var(--sidebar-rail-width);
+    align-items: center;
+  }
+
+  .navItem {
+    justify-content: center;
+    width: var(--hit-area-min);
+    padding: 0;
+  }
+
+  .navLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (width < 768px) {
+  .header {
+    gap: var(--space-sm);
+    padding: 0 var(--space-md);
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    padding: var(--space-lg) var(--space-md);
+    padding-bottom: calc(var(--bottom-nav-height) + var(--space-xl));
+  }
+
+  .bottomNav {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    border-top: 1px solid var(--border-subtle);
+    background-color: var(--surface-raised);
+  }
+
+  .bottomItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-height: var(--hit-area-min);
+    color: var(--text-secondary);
+    font-size: 0.6875rem;
+    text-decoration: none;
+  }
+
+  .bottomItemActive {
+    color: var(--accent-primary);
+    font-weight: 600;
+  }
+}
+
+/* Landscape phones give the hero back its vertical space. */
+@media (width < 900px) and (orientation: landscape) {
+  .content {
+    padding-top: var(--space-md);
+  }
+}

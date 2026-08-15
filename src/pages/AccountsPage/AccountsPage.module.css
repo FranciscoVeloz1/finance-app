@@ -1,0 +1,108 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-raised);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: 60px;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.inactiveRow {
+  opacity: 0.6;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-sunken);
+  color: var(--text-secondary);
+}
+
+.icon[data-type='credit'] {
+  background-color: var(--world-credit-soft);
+  color: var(--world-credit-strong);
+}
+
+.icon[data-type='cash'] {
+  background-color: var(--world-cash-soft);
+  color: var(--world-cash-strong);
+}
+
+.icon[data-type='savings-fund'] {
+  background-color: var(--world-savings-soft);
+  color: var(--world-savings-strong);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.label {
+  color: var(--text-primary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.label:hover {
+  text-decoration: underline;
+}
+
+.type {
+  color: var(--text-muted);
+  font-size: var(--text-caption);
+}
+
+.inactiveSection {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-base);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  min-height: var(--hit-area-min);
+  padding: 0 var(--space-md);
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.inactiveSection[open] .summary {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.inactiveSection .list {
+  border: none;
+  border-radius: 0;
+}

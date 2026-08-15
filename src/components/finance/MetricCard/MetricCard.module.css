@@ -1,0 +1,73 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-raised);
+  box-shadow: var(--elevation-raised);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.icon {
+  display: inline-flex;
+  color: var(--world-color, var(--text-muted));
+}
+
+.label {
+  color: var(--text-secondary);
+  font-size: var(--text-label);
+  font-weight: 500;
+  line-height: var(--leading-label);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.subtitle,
+.muted {
+  color: var(--text-secondary);
+  font-size: var(--text-caption);
+  line-height: var(--leading-label);
+}
+
+.error {
+  color: var(--semantic-negative);
+  font-size: var(--text-caption);
+  line-height: var(--leading-label);
+}
+
+.breakdown {
+  align-self: flex-start;
+  margin-left: calc(var(--space-sm) * -1);
+  color: var(--accent-secondary);
+}
+
+/* The three financial worlds are never distinguished by color alone: each also
+   carries its own icon and label, the tint only reinforces the grouping. */
+.credit {
+  --world-color: var(--semantic-credit);
+
+  border-top: 3px solid var(--semantic-credit);
+}
+
+.cash {
+  --world-color: var(--semantic-cash);
+
+  border-top: 3px solid var(--semantic-cash);
+}
+
+.savings {
+  --world-color: var(--semantic-savings);
+
+  border-top: 3px solid var(--semantic-savings);
+}
