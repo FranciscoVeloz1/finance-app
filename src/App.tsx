@@ -17,7 +17,7 @@ import { SettingsPage } from './pages/SettingsPage';
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <AuthProvider>
           <ToastProvider>
             <Routes>

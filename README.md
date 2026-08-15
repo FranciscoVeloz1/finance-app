@@ -31,6 +31,22 @@ npx playwright test e2e/finance-happy-path.spec.ts
 Playwright asume API en `:3000`, SPA en `:5173` y el ledger tracer ya sembrado.
 No imprime passwords ni tokens.
 
+## Deployment (GitHub Pages)
+
+A push to `main` runs `.github/workflows/deploy.yml` (lint, typecheck, test,
+build) and deploys `dist/` to Pages at
+`https://franciscoveloz1.github.io/finance-app/`.
+
+Local `npm run dev` stays at `/`. The Pages `base` (`/finance-app/`) is set
+only in CI via `VITE_BASE_PATH`. Production API origin is the
+`VITE_API_BASE_URL` repository secret (no trailing slash).
+
+```bash
+gh secret set VITE_API_BASE_URL --body "https://YOUR-API.up.railway.app"
+```
+
+On `personal-api`, include `https://franciscoveloz1.github.io` in `CORS_ORIGINS`.
+
 ## Auth
 
 La SPA guarda solo el refresh token en `sessionStorage` (`finance:refresh:v1`).
