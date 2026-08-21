@@ -229,6 +229,34 @@ export const accountListResponseSchema = z
   })
   .strict();
 
+export const accountEnvelopeSchema = z
+  .object({
+    account: accountDtoSchema,
+  })
+  .strict();
+
+export const createAccountBodySchema = z
+  .object({
+    name: z.string().min(1).max(100),
+    type: z.enum(['DEBIT', 'CASH', 'CREDIT', 'SAVINGS', 'OTHER']),
+    initialBalance: moneySchema,
+    creditLimit: moneySchema.optional(),
+    openingDebt: moneySchema.optional(),
+    statementDay: z.number().int().min(1).max(31).optional(),
+    paymentDay: z.number().int().min(1).max(31).optional(),
+    includeInProjections: z.boolean().optional(),
+    startsOn: calendarDateSchema,
+  })
+  .strict();
+
+export const patchAccountBodySchema = createAccountBodySchema
+  .partial()
+  .omit({ type: true })
+  .strict();
+
+export type CreateAccountBody = z.infer<typeof createAccountBodySchema>;
+export type PatchAccountBody = z.infer<typeof patchAccountBodySchema>;
+
 export const transactionDtoSchema = z
   .object({
     id: uuidV4Schema,
@@ -258,6 +286,36 @@ export const transactionEnvelopeSchema = z
     transaction: transactionDtoSchema,
   })
   .strict();
+
+export const periodDtoSchema = z
+  .object({
+    id: uuidV4Schema,
+    year: z.number().int(),
+    month: z.number().int().min(1).max(12),
+    label: z.string().nullable(),
+    notes: z.string().nullable(),
+    version: z.number().int(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  })
+  .strict();
+
+export const periodEnvelopeSchema = z
+  .object({
+    period: periodDtoSchema,
+  })
+  .strict();
+
+export const createPeriodBodySchema = z
+  .object({
+    year: z.number().int().min(2000),
+    month: z.number().int().min(1).max(12),
+    label: z.string().max(120).optional(),
+    seedDefaults: z.boolean().optional(),
+  })
+  .strict();
+
+export type CreatePeriodBody = z.infer<typeof createPeriodBodySchema>;
 
 export const periodListFiltersSchema = z
   .object({

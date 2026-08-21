@@ -82,6 +82,31 @@ export function comparePeriods(a: PeriodId, b: PeriodId): number {
   return a < b ? -1 : 1;
 }
 
+export function nextCreatableYearMonth(
+  periods: Array<{ year: number; month: number }>,
+  now: Date = new Date(),
+): { year: number; month: number } {
+  const first = periods[0];
+  if (first === undefined) {
+    return { year: now.getFullYear(), month: now.getMonth() + 1 };
+  }
+
+  let latest = first;
+  for (let index = 1; index < periods.length; index += 1) {
+    const period = periods[index];
+    if (period === undefined) {
+      continue;
+    }
+    if (period.year > latest.year || (period.year === latest.year && period.month > latest.month)) {
+      latest = period;
+    }
+  }
+
+  const nextId = shiftPeriod(`${latest.year}-${String(latest.month).padStart(2, '0')}`, 1);
+  const [year, month] = nextId.split('-');
+  return { year: Number(year), month: Number(month) };
+}
+
 export function pickDefaultPeriod<T extends { id: string; year: number; month: number }>(
   periods: T[],
   now: Date = new Date(),

@@ -1,5 +1,6 @@
 import type {
   AccountDto,
+  FinanceAccountType,
   PeriodListItem,
   PeriodSummaryResponse,
   SuggestionDto,
@@ -35,6 +36,14 @@ const ACCOUNT_TYPE_TO_UI: Record<string, AccountType> = {
   CREDIT: 'credit',
   SAVINGS: 'savings-fund',
   OTHER: 'other',
+};
+
+export const ACCOUNT_TYPE_TO_API: Record<AccountType, FinanceAccountType> = {
+  debit: 'DEBIT',
+  cash: 'CASH',
+  credit: 'CREDIT',
+  'savings-fund': 'SAVINGS',
+  other: 'OTHER',
 };
 
 const KIND_TO_UI: Record<string, MovementKind> = {

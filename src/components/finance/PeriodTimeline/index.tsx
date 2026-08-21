@@ -16,6 +16,7 @@ interface PeriodTimelineProps {
   selectedPeriod: PeriodId;
   onSelect: (periodId: PeriodId) => void;
   onCreatePeriod: () => void;
+  creating?: boolean;
   onRetry: () => void;
 }
 
@@ -26,6 +27,7 @@ export function PeriodTimeline({
   selectedPeriod,
   onSelect,
   onCreatePeriod,
+  creating = false,
   onRetry,
 }: PeriodTimelineProps) {
   return (
@@ -54,7 +56,12 @@ export function PeriodTimeline({
           title="Aún no hay periodos"
           description="Crea tu primer mes para empezar a planear ingresos, gastos y ahorro."
           action={
-            <Button variant="primary" icon={<PlusIcon size={16} />} onClick={onCreatePeriod}>
+            <Button
+              variant="primary"
+              icon={<PlusIcon size={16} />}
+              loading={creating}
+              onClick={onCreatePeriod}
+            >
               Crear periodo
             </Button>
           }
@@ -115,6 +122,7 @@ export function PeriodTimeline({
             variant="secondary"
             className={styles.create}
             icon={<PlusIcon size={16} />}
+            loading={creating}
             onClick={onCreatePeriod}
           >
             Crear periodo futuro

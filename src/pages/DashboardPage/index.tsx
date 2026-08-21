@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCreateNextPeriod } from '../../hooks/useCreateNextPeriod';
 import { useDashboardData } from '../../hooks/useDashboardData';
 import { useToast } from '../../hooks/useToast';
 import type { Movement } from '../../types/finance';
@@ -31,6 +32,7 @@ interface BreakdownRequest {
 
 export function DashboardPage() {
   const { periodId, setPeriod, year, month, summary, summaryZone, timelineZone } = useDashboardData();
+  const { createNextPeriod, isCreating } = useCreateNextPeriod();
   const { notify } = useToast();
   const navigate = useNavigate();
   const [breakdown, setBreakdown] = useState<BreakdownRequest | null>(null);
@@ -282,9 +284,8 @@ export function DashboardPage() {
             status={timelineZone.status}
             selectedPeriod={periodId ?? ''}
             onSelect={setPeriod}
-            onCreatePeriod={() => {
-              notify('info', 'La creación de periodos se habilita con la capa de datos.');
-            }}
+            onCreatePeriod={createNextPeriod}
+            creating={isCreating}
             onRetry={timelineZone.retry}
           />
         </aside>

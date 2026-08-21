@@ -1,11 +1,22 @@
 import { request } from './http';
 import { parseWithApiError } from './parse';
 import {
+  createAccountBodySchema,
+  createPeriodBodySchema,
+  periodEnvelopeSchema,
+  patchAccountBodySchema,
+  accountEnvelopeSchema,
   projectionConfirmResponseSchema,
   projectionPreviewResponseSchema,
   transactionEnvelopeSchema,
+  uuidV4Schema,
+  type CreateAccountBody,
+  type CreatePeriodBody,
+  type PatchAccountBody,
 } from './finance-schemas';
 import type {
+  AccountDto,
+  PeriodDto,
   ProjectionConfirmResponse,
   ProjectionPreviewResponse,
   PropagationChangeInput,
@@ -13,6 +24,42 @@ import type {
 } from './finance-types';
 
 export { parseWithApiError } from './parse';
+
+export async function createPeriod(body: CreatePeriodBody): Promise<{ period: PeriodDto }> {
+  const parsed = createPeriodBodySchema.parse(body);
+  const raw = await request<unknown>('/api/v1/finance/periods', {
+    method: 'POST',
+    body: JSON.stringify(parsed),
+  });
+  return parseWithApiError(periodEnvelopeSchema, raw);
+}
+
+export async function createAccount(body: CreateAccountBody): Promise<{ account: AccountDto }> {
+  const parsed = createAccountBodySchema.parse(body);
+  const raw = await request<unknown>('/api/v1/finance/accounts', {
+    method: 'POST',
+    body: JSON.stringify(parsed),
+  });
+  return parseWithApiError(accountEnvelopeSchema, raw);
+}
+
+export async function patchAccount(
+  accountId: string,
+  body: PatchAccountBody,
+): Promise<{ account: AccountDto }> {
+  const id = uuidV4Schema.parse(accountId);
+  const parsed = patchAccountBodySchema.parse(body);
+  const raw = await request<unknown>(`/api/v1/finance/accounts/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(parsed),
+  });
+  return parseWithApiError(accountEnvelopeSchema, raw);
+}
+
+export async function deactivateAccount(accountId: string): Promise<void> {
+  const id = uuidV4Schema.parse(accountId);
+  await request(`/api/v1/finance/accounts/${id}/deactivate`, { method: 'POST' });
+}
 
 export async function patchTransaction(
   transactionId: string,

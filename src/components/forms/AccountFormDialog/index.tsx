@@ -21,6 +21,7 @@ export interface AccountDraft {
 interface AccountFormDialogProps {
   open: boolean;
   account: Account | null;
+  submitting?: boolean;
   onClose: () => void;
   onSubmit: (draft: AccountDraft) => void;
 }
@@ -53,7 +54,13 @@ function toDraft(account: Account | null): AccountDraft {
   };
 }
 
-export function AccountFormDialog({ open, account, onClose, onSubmit }: AccountFormDialogProps) {
+export function AccountFormDialog({
+  open,
+  account,
+  submitting = false,
+  onClose,
+  onSubmit,
+}: AccountFormDialogProps) {
   const [draft, setDraft] = useState<AccountDraft>(() => {
     return toDraft(account);
   });
@@ -78,12 +85,13 @@ export function AccountFormDialog({ open, account, onClose, onSubmit }: AccountF
       open={open}
       title={account === null ? 'Agregar cuenta' : `Editar ${account.label}`}
       onClose={onClose}
+      busy={submitting}
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="secondary" disabled={submitting} onClick={onClose}>
             Cancelar
           </Button>
-          <Button type="submit" form="account-form">
+          <Button type="submit" form="account-form" loading={submitting}>
             Guardar
           </Button>
         </>
@@ -120,13 +128,19 @@ export function AccountFormDialog({ open, account, onClose, onSubmit }: AccountF
           }}
         </Field>
 
-        <Field label="Tipo" required>
-          {({ id }) => {
+        <Field
+          label="Tipo"
+          required
+          hint={account === null ? undefined : 'El tipo no se puede cambiar después de crear la cuenta.'}
+        >
+          {({ id, describedBy }) => {
             return (
               <select
                 className="control"
                 id={id}
+                aria-describedby={describedBy}
                 value={draft.type}
+                disabled={account !== null}
                 onChange={(event) => {
                   update('type', event.target.value as AccountType);
                 }}

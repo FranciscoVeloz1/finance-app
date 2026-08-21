@@ -7,6 +7,7 @@ interface ConfirmDialogProps {
   description: string;
   confirmLabel: string;
   destructive?: boolean;
+  busy?: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
@@ -17,6 +18,7 @@ export function ConfirmDialog({
   description,
   confirmLabel,
   destructive = false,
+  busy = false,
   onClose,
   onConfirm,
 }: ConfirmDialogProps) {
@@ -25,12 +27,17 @@ export function ConfirmDialog({
       open={open}
       title={title}
       onClose={onClose}
+      busy={busy}
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="secondary" disabled={busy} onClick={onClose}>
             Cancelar
           </Button>
-          <Button variant={destructive ? 'destructive' : 'primary'} onClick={onConfirm}>
+          <Button
+            variant={destructive ? 'destructive' : 'primary'}
+            loading={busy}
+            onClick={onConfirm}
+          >
             {confirmLabel}
           </Button>
         </>

@@ -1,3 +1,4 @@
+import { useCreateNextPeriod } from '../../../hooks/useCreateNextPeriod';
 import { useFinancePeriods } from '../../../hooks/useFinancePeriods';
 import { useSelectedPeriod } from '../../../hooks/useSelectedPeriod';
 import { formatYearMonth } from '../../../utils/dates';
@@ -5,16 +6,12 @@ import { Button } from '../../forms/Button';
 import { ChevronLeftIcon, ChevronRightIcon } from '../../icons';
 import styles from './PeriodSelector.module.css';
 
-interface PeriodSelectorProps {
-  missing?: boolean;
-  onCreatePeriod?: () => void;
-  showTemporalBadge?: boolean;
-}
-
-export function PeriodSelector({ missing = false, onCreatePeriod }: PeriodSelectorProps) {
+export function PeriodSelector() {
   const { periodId, setPeriod } = useSelectedPeriod();
   const periodsQuery = useFinancePeriods();
+  const { createNextPeriod, isCreating } = useCreateNextPeriod();
   const options = periodsQuery.data?.periods ?? [];
+  const missing = periodsQuery.isSuccess && options.length === 0;
   const index = options.findIndex((period) => period.id === periodId);
   const current = index >= 0 ? options[index] : undefined;
 
@@ -74,11 +71,9 @@ export function PeriodSelector({ missing = false, onCreatePeriod }: PeriodSelect
       {missing ? (
         <p className={styles.missing}>
           <span>Este periodo aún no existe.</span>
-          {onCreatePeriod === undefined ? null : (
-            <Button variant="ghost" size="sm" onClick={onCreatePeriod}>
-              Crear periodo
-            </Button>
-          )}
+          <Button variant="ghost" size="sm" loading={isCreating} onClick={createNextPeriod}>
+            Crear periodo
+          </Button>
         </p>
       ) : null}
     </div>

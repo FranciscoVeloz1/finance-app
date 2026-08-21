@@ -55,6 +55,20 @@ export function formatSignedMXN(amount: number): string {
   return `${MINUS_SIGN}${magnitude}`;
 }
 
+export function toUnsignedMoneyString(raw: string): string | null {
+  const normalized = raw.trim().replace(',', '.');
+  if (normalized.length === 0) {
+    return '0.00';
+  }
+
+  const value = Number(normalized);
+  if (!Number.isFinite(value) || value < 0) {
+    return null;
+  }
+
+  return value.toFixed(2);
+}
+
 export function amountTone(amount: number): AmountTone {
   if (amount > 0) {
     return 'positive';

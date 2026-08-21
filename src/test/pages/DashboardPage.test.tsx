@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 import { DashboardPage } from '../../pages/DashboardPage';
@@ -124,5 +125,57 @@ describe('DashboardPage', () => {
 
     renderDashboard();
     expect(await screen.findAllByText(/29,650\.00/)).not.toHaveLength(0);
+  });
+
+  it('creates the current calendar month when the timeline is empty', async () => {
+    configureHttp({
+      getAccessToken: () => 't',
+      refreshSession: async () => 't',
+      onSessionExpired: () => {},
+    });
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (init?.method === 'POST' && url.includes('/finance/periods')) {
+        return jsonResponse(
+          {
+            period: {
+              id: '6e8f0c12-4b3a-4d21-9f10-7c5e2a91b001',
+              year: 2026,
+              month: 8,
+              label: null,
+              notes: null,
+              version: 1,
+              createdAt: '2026-08-18T00:00:00.000Z',
+              updatedAt: '2026-08-18T00:00:00.000Z',
+            },
+          },
+          201,
+        );
+      }
+      if (url.includes('/finance/periods')) {
+        return jsonResponse({ periods: [] });
+      }
+      return jsonResponse({ error: 'NOT_FOUND', message: 'no' }, 404);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    renderDashboard();
+    await userEvent.click(await screen.findByRole('button', { name: 'Crear periodo' }));
+
+    expect(await screen.findByText(/Periodo agosto de 2026 creado/i)).toBeInTheDocument();
+    const postCall = fetchMock.mock.calls.find((call) => {
+      const init = call[1] as RequestInit | undefined;
+      return init?.method === 'POST';
+    });
+    expect(postCall).toBeDefined();
+    if (postCall === undefined) {
+      throw new Error('expected POST /finance/periods');
+    }
+    const posted = postCall[1] as RequestInit;
+    expect(JSON.parse(String(posted.body))).toEqual({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+    });
+    expect(screen.queryByText('La creación de periodos se habilita con la capa de datos.')).toBeNull();
   });
 });

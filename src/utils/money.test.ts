@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { amountTone, budgetLevel, formatSignedMXN, percentOf } from './money';
+import { amountTone, budgetLevel, formatSignedMXN, percentOf, toUnsignedMoneyString } from './money';
 
 describe('formatSignedMXN', () => {
   it('keeps meaning without color by always rendering a sign', () => {
@@ -37,5 +37,18 @@ describe('percentOf', () => {
     expect(percentOf(150, 100)).toBe(100);
     expect(percentOf(-10, 100)).toBe(0);
     expect(percentOf(10, 0)).toBe(0);
+  });
+});
+
+describe('toUnsignedMoneyString', () => {
+  it('normalizes decimals and empty input', () => {
+    expect(toUnsignedMoneyString('')).toBe('0.00');
+    expect(toUnsignedMoneyString('21350')).toBe('21350.00');
+    expect(toUnsignedMoneyString('7,5')).toBe('7.50');
+  });
+
+  it('rejects negatives and garbage', () => {
+    expect(toUnsignedMoneyString('-1')).toBeNull();
+    expect(toUnsignedMoneyString('abc')).toBeNull();
   });
 });
